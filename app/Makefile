@@ -47,11 +47,11 @@ APP_SOURCE_PATH += $(ZXLIB_DIR)/app/ui
 
 # Application icons following guidelines:
 # https://developers.ledger.com/docs/embedded-app/design-requirements/#device-icon
-ICON_NANOS = icons/nanos_icon.gif
 ICON_NANOX = icons/nanox_icon.gif
 ICON_NANOSP = icons/nanox_icon.gif
 ICON_STAX = icons/stax_icon.gif
 ICON_FLEX = icons/flex_icon.gif
+ICON_APEX_P = icons/apex_icon.png
 
 # Application allowed derivation curves.
 CURVE_APP_LOAD_PARAMS = secp256k1
@@ -74,7 +74,7 @@ DEFINES += PRODUCTION_BUILD=${PRODUCTION_BUILD}
 #     Application custom permissions   #
 ########################################
 # See SDK `include/appflags.h` for the purpose of each permission
-ifeq ($(TARGET_NAME),$(filter $(TARGET_NAME),TARGET_NANOX TARGET_STAX TARGET_FLEX))
+ifeq ($(TARGET_NAME),$(filter $(TARGET_NAME),TARGET_NANOX TARGET_STAX TARGET_FLEX TARGET_APEX_P))
 HAVE_APPLICATION_FLAG_BOLOS_SETTINGS = 1
 endif
 
@@ -92,13 +92,9 @@ ENABLE_NBGL_QRCODE = 1
 #          Features disablers          #
 ########################################
 # Use only specific files from standard app
-DISABLE_STANDARD_APP_FILES = 1
+#DISABLE_STANDARD_APP_FILES = 1
 APP_SOURCE_FILES += ${BOLOS_SDK}/lib_standard_app/crypto_helpers.c
 INCLUDES_PATH += ${BOLOS_SDK}/lib_standard_app
-
-ifeq ($(TARGET_NAME), TARGET_NANOS)
-DISABLE_STANDARD_BAGL_UX_FLOW = 1
-endif
 
 ########################################
 #          Zondax specific config      #

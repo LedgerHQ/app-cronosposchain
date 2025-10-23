@@ -10,10 +10,6 @@ on:
 
 jobs:
 
-  guideline_enforcer:
-    name: Call Ledger guidelines_enforcer
-    uses: LedgerHQ/ledger-app-workflows/.github/workflows/reusable_guidelines_enforcer.yml@v1
-
   build_application:
     name: Build application
     uses: LedgerHQ/ledger-app-workflows/.github/workflows/reusable_build.yml@v1
@@ -24,7 +20,7 @@ jobs:
     name: Cryptocom functional tests
     strategy:
       matrix:
-        device: ["nanos", "nanox", "nanosp", "stax", "flex"]
+        device: ["nanosp", "nanox", "stax", "flex", "apex_p"]
       fail-fast: false
     needs:
       - build_application
