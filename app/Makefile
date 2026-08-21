@@ -33,7 +33,7 @@ APPNAME = "Cronos POS Chain"
 # Application version
 APPVERSION_M=2
 APPVERSION_N=19
-APPVERSION_P=0
+APPVERSION_P=1
 APPVERSION = "$(APPVERSION_M).$(APPVERSION_N).$(APPVERSION_P)"
 
 # Application source files
@@ -99,7 +99,7 @@ INCLUDES_PATH += ${BOLOS_SDK}/lib_standard_app
 ########################################
 #          Zondax specific config      #
 ########################################
-DEFINES       += REVIEW_SCREEN_ENABLED # zxlib : enable nanos "please review" screen. 
+DEFINES       += REVIEW_SCREEN_ENABLED # zxlib : enable nanos "please review" screen.
 DEFINES       += HAVE_BOLOS_APP_STACK_CANARY
 DEFINES       += LEDGER_SPECIFIC
 
