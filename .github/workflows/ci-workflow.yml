@@ -1,17 +1,16 @@
-name: Compilation & tests
+name: Build and run functional tests using ragger through reusable workflow
 
 on:
   workflow_dispatch:
   push:
     branches:
-    - master
-    - develop
+      - master
+      - develop
   pull_request:
 
 jobs:
-
   build_application:
-    name: Build application
+    name: Build application using the reusable workflow
     uses: LedgerHQ/ledger-app-workflows/.github/workflows/reusable_build.yml@v1
     with:
       upload_app_binaries_artifact: compiled_app_binaries
@@ -27,10 +26,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: Install node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
           node-version: "18"
 
@@ -38,7 +37,7 @@ jobs:
         run: cd tests_zemu && npm install
 
       - name: Download app binaries
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: compiled_app_binaries
           path: app/build
@@ -48,7 +47,7 @@ jobs:
 
       - name: Upload snapshots
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v6
         with:
           name: ${{ matrix.device }}-zemu-snapshots
           path: tests_zemu/snapshots-tmp/
